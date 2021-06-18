@@ -12,7 +12,8 @@ const PostSchema = new mongoose.Schema({
     },
     code_title: {
         type: String,
-        required: true
+        unique:true
+        //type: {type: String, required: true, unique: true, dropDups: true}
     },
     code_url: {
         type: String,

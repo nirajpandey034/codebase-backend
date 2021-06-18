@@ -12,8 +12,7 @@ const getPagination = (page, size) => {
 router.get('/', (req, res) => {
     const { page } = req.query;
     const { limit, offset } = getPagination(page, 3);
-
-
+    
     Post.paginate({},{offset: offset, limit: limit})
     .then((posts) => {res.send({
         totalItems: posts.totalDocs,
@@ -24,14 +23,18 @@ router.get('/', (req, res) => {
         hasNextPage: posts.hasNextPage
     });
 })
-    .catch((err) => {res.status(500).send(err);})
+    .catch((err) => {res.status(500).send(err);}) 
+})
 
-    // Post.find(function (err, posts) {
-    //     if (err)
-    //         res.send("Some error occured while fetching the posts")
-
-    //     res.send(JSON.stringify(posts));
-    // });
+router.post('/',(req, res) => {
+    let codeTitle = req.body.code_title;
+    Post.findOne({code_title: codeTitle})
+    .then((data)=>{
+        res.json(data);
+    })
+    .catch(err=>{
+        res.status(400).json({"message" : err});
+    })
 })
 
 module.exports = router;
