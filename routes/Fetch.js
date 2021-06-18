@@ -11,7 +11,7 @@ const getPagination = (page, size) => {
 
 router.get('/', (req, res) => {
     const { page } = req.query;
-    const { limit, offset } = getPagination(page, 3);
+    const { limit, offset } = getPagination(page, 6);
     
     Post.paginate({},{offset: offset, limit: limit})
     .then((posts) => {res.send({
