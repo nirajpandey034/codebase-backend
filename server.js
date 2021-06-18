@@ -14,7 +14,7 @@ app.use(express.json({ extended: false }));
 
 // Routes
 app.use('/upload', require('./routes/Upload'));
-app.use('/fetch', require('./routes/fetch'));
+app.use('/fetch', require('./routes/Fetch'));
 
 //default route
 app.use((req,res)=>{
